@@ -55,7 +55,9 @@ public class SpellChecker {
     }
     public ArrayList<String> suggestedWords(String input) {
         ArrayList<String> allPossibleWords = new ArrayList<>();
-        allPossibleWords.addAll(charAppendPrepend(input));
+
+//        allPossibleWords.addAll(charAppendPrepend(input));
+        allPossibleWords.addAll(charMissingInBetween(input));
 
         return allPossibleWords;
     }
@@ -74,6 +76,25 @@ public class SpellChecker {
             }
             if(dictionary.contains(atBack)) {
                 returnWords.add(atBack);
+            }
+        }
+        return returnWords;
+    }
+
+//    2. add missing letter in between - if user misses a letter in between the word excluding the first and last letter
+    public ArrayList<String> charMissingInBetween(String input) {
+        ArrayList<String> returnWords = new ArrayList<>();
+
+        int length = input.length() - 1;
+
+        for(int i = 1; i < length; i++) {
+            for(char c : alphabets) {
+                String word = input.substring(0, i);
+                word = word.concat(c + input.substring(i));
+
+                if(dictionary.contains(word)) {
+                    returnWords.add(word);
+                }
             }
         }
         return returnWords;
