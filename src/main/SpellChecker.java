@@ -60,6 +60,7 @@ public class SpellChecker {
         allPossibleWords.addAll(charAppendPrepend(input));
         allPossibleWords.addAll(charMissingInBetween(input));
         allPossibleWords.addAll(removesExtraLetter(input));
+        allPossibleWords.addAll(swapAdjChar(input));
 
         return allPossibleWords;
     }
@@ -127,6 +128,25 @@ public class SpellChecker {
 
         if(dictionary.contains(input.substring(0, length))) {       //  removes extra letter from the end
             returnWords.add(input.substring(0, length));
+        }
+        return returnWords;
+    }
+
+//    4. Swap adjacent characters - example heard -- haerd -> If user accidentally swaps letter in the word
+    public ArrayList<String> swapAdjChar(String input) {
+        ArrayList<String> returnWords = new ArrayList<>();
+
+        int length = input.length() - 1;
+
+        for(int i = 0; i < length; i++) {
+            String word = input.substring(0, i);
+            word = word + input.charAt(i + 1);
+            word = word + input.charAt(i);
+            word = word + input.substring(i + 2);
+
+            if(dictionary.contains(word)) {
+                returnWords.add(word);
+            }
         }
         return returnWords;
     }

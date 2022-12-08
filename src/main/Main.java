@@ -10,7 +10,8 @@ public class Main {
         SpellChecker spellChecker = new SpellChecker();
         spellChecker.run();
 
-//        String input = "usuing";
+//        String input = "haerd";
+
 //
 //
 //        int length = input.length();
