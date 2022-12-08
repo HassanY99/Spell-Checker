@@ -32,13 +32,33 @@ public class SpellChecker {
                 break;
             }
             if(dictionary.contains(input)) {
-                System.out.println("\n" + input + " is spelled correctly");
+                System.out.println("\n" + "'" + input + "'" + " is spelled correctly");
             } else {
-                System.out.println("is not spelled correctly, ");
+                System.out.println("\n" + "'" + input + "'" + " is not spelled correctly.");
+                System.out.println(printSuggestions(input));
             }
         }
     }
 
+    public String printSuggestions(String input) {
+        StringBuilder stringBuilder = new StringBuilder();
+        ArrayList<String> suggestions = suggestedWords(input);
+
+        if(suggestions.size() == 0) {
+            return "My program seems to think it's not a word.";
+        }
+        stringBuilder.append("Did you mean:\n");
+        for(String s : suggestions) {
+            stringBuilder.append("\n -> " + s);
+        }
+        return stringBuilder.toString();
+    }
+    public ArrayList<String> suggestedWords(String input) {
+        ArrayList<String> allPossibleWords = new ArrayList<>();
+        allPossibleWords.addAll(charAppendPrepend(input));
+
+        return allPossibleWords;
+    }
 
 //    1. append & prepend char - if user misses a letter either in the front, back of the word or both.
 
