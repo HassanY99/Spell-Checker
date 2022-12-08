@@ -1,6 +1,8 @@
 package main;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SpellChecker {
@@ -36,4 +38,25 @@ public class SpellChecker {
             }
         }
     }
+
+
+//    1. append & prepend char - if user misses a letter either in the front, back of the word or both.
+
+    public ArrayList<String> charAppendPrepend(String input) {
+        ArrayList<String> returnWords = new ArrayList<>();
+
+        for(char c : alphabets) {
+            String atFront = c + input;
+            String atBack = input + c;
+
+            if(dictionary.contains(atFront)) {
+                returnWords.add(atFront);
+            }
+            if(dictionary.contains(atBack)) {
+                returnWords.add(atBack);
+            }
+        }
+        return returnWords;
+    }
+
 }
