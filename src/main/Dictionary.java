@@ -1,17 +1,15 @@
 package main;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Locale;
 
 public class Dictionary {
 
     private int num = 1319; // Prime Number
     private Bucket[] bucketArray;
 
-    private Dictionary() {
+    public Dictionary() {
 
         bucketArray = new Bucket[num];
 
@@ -37,7 +35,7 @@ public class Dictionary {
     }
     int count;
 //    build - reads the text from the file and keeps adding words using add()
-    public void build(String filepath) throws IOException {
+    public void build(String filepath) {
 
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath));
@@ -45,7 +43,7 @@ public class Dictionary {
 
             while((word = bufferedReader.readLine()) != null) {
                 add(word);
-                System.out.println("word count: " + count++);
+//                System.out.println("word count: " + count++);
             }
         } catch (IOException ioException) {
             ioException.printStackTrace();
