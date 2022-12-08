@@ -1,5 +1,9 @@
 package main;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Locale;
 
 public class Dictionary {
@@ -30,5 +34,22 @@ public class Dictionary {
     public boolean contains(String input) {
         input = input.toLowerCase();
         return bucketArray[hash(input)].get(input);
+    }
+    int count;
+//    build - reads the text from the file and keeps adding words using add()
+    public void build(String filepath) throws IOException {
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath));
+            String word;
+
+            while((word = bufferedReader.readLine()) != null) {
+                add(word);
+                System.out.println("word count: " + count++);
+            }
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
     }
 }
