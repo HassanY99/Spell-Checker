@@ -25,5 +25,16 @@ public class Bucket {
         first = new Node(key, first);       // Add that word in the dictionary
     }
 
+//    Method to get the words from the dictionary
+    public boolean get(String key) {        // Returns true, if key/word found in the dictionary
+        Node next = first;
 
+        while(next != null) {
+            if(next.word.equals(key)) {
+                return true;
+            }
+            next = next.next;
+        }
+        return false;
+    }
 }
