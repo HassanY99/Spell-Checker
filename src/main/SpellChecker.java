@@ -111,7 +111,11 @@ public class SpellChecker {
 
         int length = input.length() - 1;
 
-        for(int i = 0; i < length; i++) {
+        if(dictionary.contains(input.substring(1))) {       //  removes extra letter from the front
+            returnWords.add(input.substring(1));
+        }
+
+        for(int i = 1; i < length; i++) {               //  removes extra letter from the middle
 
                 String word = input.substring(0, i);
                 word = word.concat(input.substring(i + 1));
@@ -119,6 +123,10 @@ public class SpellChecker {
                 if(dictionary.contains(word)) {
                     returnWords.add(word);
                 }
+        }
+
+        if(dictionary.contains(input.substring(0, length))) {       //  removes extra letter from the end
+            returnWords.add(input.substring(0, length));
         }
         return returnWords;
     }
