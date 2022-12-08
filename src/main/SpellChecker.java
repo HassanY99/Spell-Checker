@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class SpellChecker {
 
@@ -56,8 +57,9 @@ public class SpellChecker {
     public ArrayList<String> suggestedWords(String input) {
         ArrayList<String> allPossibleWords = new ArrayList<>();
 
-//        allPossibleWords.addAll(charAppendPrepend(input));
+        allPossibleWords.addAll(charAppendPrepend(input));
         allPossibleWords.addAll(charMissingInBetween(input));
+        allPossibleWords.addAll(removesExtraLetter(input));
 
         return allPossibleWords;
     }
@@ -85,7 +87,7 @@ public class SpellChecker {
     public ArrayList<String> charMissingInBetween(String input) {
         ArrayList<String> returnWords = new ArrayList<>();
 
-        int length = input.length() - 1;
+        int length = input.length();
 
         for(int i = 1; i < length; i++) {
             for(char c : alphabets) {
@@ -96,6 +98,27 @@ public class SpellChecker {
                     returnWords.add(word);
                 }
             }
+        }
+        if(dictionary.contains(input.substring(1, input.length() - 1))) {
+            returnWords.add(input.substring(0, input.length() - 1));
+        }
+        return returnWords;
+    }
+
+//    3. remove extra letter in the word - if users accidentally adds an extra letter at the front, end or in between the word.
+    public ArrayList<String> removesExtraLetter(String input) {
+        ArrayList<String> returnWords = new ArrayList<>();
+
+        int length = input.length() - 1;
+
+        for(int i = 0; i < length; i++) {
+
+                String word = input.substring(0, i);
+                word = word.concat(input.substring(i + 1));
+
+                if(dictionary.contains(word)) {
+                    returnWords.add(word);
+                }
         }
         return returnWords;
     }
