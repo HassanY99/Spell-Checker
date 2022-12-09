@@ -17,7 +17,7 @@ public class SpellChecker {
         dictionary.build(filepath);
     }
 
-    void run() {
+    void checksWord() {
         Scanner scan = new Scanner(System.in);
         String input;
 
@@ -26,16 +26,16 @@ public class SpellChecker {
         System.out.println("-----------------------------------------------------");
 
         while(true) {
-            System.out.println("\n --- Enter a word:  ");
+            System.out.print("\n---Enter a word: ");
             input = scan.nextLine();
 
-            if(input.equals("")) {
+            if (input.equals("")) {
                 break;
             }
-            if(dictionary.contains(input)) {
+            if (dictionary.contains(input)) {
                 System.out.println("\n" + "'" + input + "'" + " is spelled correctly");
             } else {
-                System.out.println("\n" + "'" + input + "'" + " is not spelled correctly.");
+                System.out.println("'" + input + "'" + " is not spelled correctly.");
                 System.out.println(printSuggestions(input));
             }
         }
@@ -65,7 +65,7 @@ public class SpellChecker {
         return allPossibleWords;
     }
 
-//    1. append & prepend char - if user misses a letter either in the front, back of the word or both.
+//    1. append & prepend char - if user misses a letter either in the front or back of the word.
 
     public ArrayList<String> charAppendPrepend(String input) {
         ArrayList<String> returnWords = new ArrayList<>();
@@ -100,9 +100,6 @@ public class SpellChecker {
                 }
             }
         }
-        if(dictionary.contains(input.substring(1, input.length() - 1))) {
-            returnWords.add(input.substring(0, input.length() - 1));
-        }
         return returnWords;
     }
 
@@ -113,7 +110,9 @@ public class SpellChecker {
         int length = input.length() - 1;
 
         if(dictionary.contains(input.substring(1))) {       //  removes extra letter from the front
-            returnWords.add(input.substring(1));
+            if(input.substring(1).length() > 2) {
+                returnWords.add(input.substring(1));
+            }
         }
 
         for(int i = 1; i < length; i++) {               //  removes extra letter from the middle
@@ -127,7 +126,9 @@ public class SpellChecker {
         }
 
         if(dictionary.contains(input.substring(0, length))) {       //  removes extra letter from the end
-            returnWords.add(input.substring(0, length));
+            if(input.substring(0, length).length() > 2) {
+                returnWords.add(input.substring(0, length));
+            }
         }
         return returnWords;
     }
