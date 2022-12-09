@@ -10,7 +10,9 @@ public class Main {
         SpellChecker spellChecker = new SpellChecker();
 //        spellChecker.checksWord();
 
-        spellChecker.checksSentence();
+//        spellChecker.checksSentence();
+
+        spellChecker.checksWordsInFile();
 
     }
 }

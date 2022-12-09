@@ -1,5 +1,8 @@
 package main;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +45,7 @@ public class SpellChecker {
     }
 
     void checksSentence() {
+        String filepath2 = "/Users/hassan/Desktop/text.txt";
         Scanner scan = new Scanner(System.in);
         String input;
 
@@ -65,6 +69,39 @@ public class SpellChecker {
         }
     }
 
+    void checksWordsInFile() throws IOException {
+
+        String filepath = "/Users/hassan/Desktop/text.txt";
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath));
+
+        try {
+            String input;
+            input = bufferedReader.readLine();
+            Scanner scan = new Scanner(input);
+
+
+            System.out.println("-----------------------------------------------------");
+            System.out.println("            Welcome to Spell Checker        ");
+            System.out.println("-----------------------------------------------------");
+
+            System.out.print("\n---Enter a Sentence: ");
+
+            while (scan.hasNext()) {
+
+                input = scan.next();
+
+                if (!dictionary.contains(input)) {
+                    System.out.println("\n__________________________________________________");
+                    System.out.println("'" + input + "'" + " is not spelled correctly.");
+                    System.out.println(printSuggestions(input));
+                }
+            }
+        } catch (IOException ioException) {
+
+            ioException.printStackTrace();
+        }
+    }
+
     public String printSuggestions(String input) {
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<String> suggestions = suggestedWords(input);
@@ -72,10 +109,11 @@ public class SpellChecker {
         if(suggestions.size() == 0) {
             return "My program seems to think it's not a word.";
         }
-        stringBuilder.append("Did you mean:\n");
+        stringBuilder.append("----- Did you mean: -----\n");
         for(String s : suggestions) {
             stringBuilder.append("\n -> " + s);
         }
+        System.out.println("_________________________________");
         return stringBuilder.toString();
     }
     public ArrayList<String> suggestedWords(String input) {
