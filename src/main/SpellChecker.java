@@ -71,7 +71,7 @@ public class SpellChecker {
 
     void checksWordsInFile() throws IOException {
 
-        String filepath = "/Users/hassan/Desktop/text.txt";
+        String filepath = "text.txt";
         BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath));
 
         try {
