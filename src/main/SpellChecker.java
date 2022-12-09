@@ -13,7 +13,7 @@ public class SpellChecker {
 
     private Dictionary dictionary;
     private char[] alphabets = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-    private String filepath = "wordlist.10000.txt";
+    private String filepath = "engmix.txt";
 
     SpellChecker() throws IOException {
         dictionary = new Dictionary();
