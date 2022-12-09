@@ -41,6 +41,30 @@ public class SpellChecker {
         }
     }
 
+    void checksSentence() {
+        Scanner scan = new Scanner(System.in);
+        String input;
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("            Welcome to Spell Checker        ");
+        System.out.println("-----------------------------------------------------");
+
+        while(true) {
+            System.out.print("\n---Enter a Sentence: ");
+            input = scan.next();
+
+            if (input.equals("")) {
+                break;
+            }
+            if (dictionary.contains(input)) {
+                System.out.println("\n" + "'" + input + "'" + " is spelled correctly");
+            } else {
+                System.out.println("'" + input + "'" + " is not spelled correctly.");
+                System.out.println(printSuggestions(input));
+            }
+        }
+    }
+
     public String printSuggestions(String input) {
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<String> suggestions = suggestedWords(input);
@@ -109,8 +133,8 @@ public class SpellChecker {
 
         int length = input.length() - 1;
 
-        if(dictionary.contains(input.substring(1))) {       //  removes extra letter from the front
-            if(input.substring(1).length() > 2) {
+        if(dictionary.contains(input.substring(1)) && !returnWords.contains(input.substring(1))) {       //  removes extra letter from the front
+            if(input.substring(1).length() > 2 ) {
                 returnWords.add(input.substring(1));
             }
         }
@@ -120,12 +144,12 @@ public class SpellChecker {
                 String word = input.substring(0, i);
                 word = word.concat(input.substring(i + 1));
 
-                if(dictionary.contains(word)) {
+                if(dictionary.contains(word) && !returnWords.contains(word)) {
                     returnWords.add(word);
                 }
         }
 
-        if(dictionary.contains(input.substring(0, length))) {       //  removes extra letter from the end
+        if(dictionary.contains(input.substring(0, length)) && !returnWords.contains(input.substring(1))) {       //  removes extra letter from the end
             if(input.substring(0, length).length() > 2) {
                 returnWords.add(input.substring(0, length));
             }
