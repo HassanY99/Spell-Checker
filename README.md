@@ -41,9 +41,9 @@
 
   ## Installation
 
-  Follow these simple instructions to set up a local development environment.
+  Follow these simple instructions to set up the program in your local.
 
-1. Clone the repository and install dependencies:
+1. Clone the repository:
 
   ```bash
   git clone https://github.com/HassanY99/Spell-Checker.git
