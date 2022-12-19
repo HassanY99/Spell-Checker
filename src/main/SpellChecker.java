@@ -55,14 +55,13 @@ public class SpellChecker {
             input = scan.next();
             count++;
 
-            if (input.length() == count) {
-                break;
-            }
             if (dictionary.contains(input)) {
                 System.out.println("\n" + "'" + input + "'" + " is spelled correctly");
-            } else {
+            } else if (!dictionary.contains(input)){
                 System.out.println("'" + input + "'" + " is not spelled correctly.");
                 System.out.println(printSuggestions(input));
+            } else if(input.length() == count) {
+                break;
             }
         }
     }
