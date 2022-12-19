@@ -4,7 +4,7 @@
 
   This program is written to correct wrong spelled words and provide the correct word from the dictionary. Given an input, the program should check to see if it exists in a dictionary of correctly spelled words.
   
-  This Java code checks for spelling mistakes in a word, sentence or in a file and can provide the most possible correct word that user might be trying to write.
+  This Java code checks for spelling mistakes in a word, sentence or in a file and can provide the best possible correct word that user might be trying to write.
   
   As of now, this program uses 4 important algorithms:
   1) charAppendPrepend():
