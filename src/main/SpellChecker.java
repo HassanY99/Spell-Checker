@@ -1,13 +1,10 @@
 package main;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class SpellChecker {
 
@@ -45,7 +42,6 @@ public class SpellChecker {
     }
 
     void checksSentence() {
-        String filepath2 = "/Users/hassan/Desktop/text.txt";
         Scanner scan = new Scanner(System.in);
         String input;
 
@@ -53,11 +49,13 @@ public class SpellChecker {
         System.out.println("            Welcome to Spell Checker        ");
         System.out.println("-----------------------------------------------------");
 
+        int count = 1;
         while(true) {
             System.out.print("\n---Enter a Sentence: ");
             input = scan.next();
+            count++;
 
-            if (input.equals("")) {
+            if (input.length() == count) {
                 break;
             }
             if (dictionary.contains(input)) {
@@ -94,6 +92,7 @@ public class SpellChecker {
                     System.out.println("\n__________________________________________________");
                     System.out.println("'" + input + "'" + " is not spelled correctly.");
                     System.out.println(printSuggestions(input));
+                    System.out.println("_________________________________");
                 }
             }
         } catch (IOException ioException) {
