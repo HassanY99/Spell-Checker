@@ -27,7 +27,7 @@
 
   ## User Story
 
-* As a user, I want to be able to check a single word spellings. I should also be able to check for spellings in a sentence. Furthermore, would also like my spellings to checked in a file.
+* As a user, I want to be able to check a single word spellings. I should also be able to check for spellings in a sentence. Furthermore, would also like my spellings to be checked in a file.
 
 ## Features
 
