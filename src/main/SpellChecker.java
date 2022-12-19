@@ -49,7 +49,7 @@ public class SpellChecker {
         System.out.println("            Welcome to Spell Checker        ");
         System.out.println("-----------------------------------------------------");
 
-        int count = 1;
+        int count = 0;
         while(true) {
             System.out.print("\n---Enter a Sentence: ");
             input = scan.next();
